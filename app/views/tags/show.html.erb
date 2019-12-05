@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @tag.title %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <svg width="20" height="20">
+    <rect width="20" height="20" style="fill:<%=tag.color%>" />
+  </svg>
+</p>
+
+<%= link_to 'Edit', edit_tag_path(@tag) %> |
+<%= link_to 'Back', tags_path %>
