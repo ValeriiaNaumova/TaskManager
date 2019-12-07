@@ -29,8 +29,11 @@
         <td><%= task.is_done %></td>
         <td><%= task.category.title %></td>
         <td>
-          <%= task.tags.map { |t| p t}.join(', ') %>
+          <%= task.tags.each do |tag| -%>
+            <%= tag.title %><% end -%>
         </td>
+
+
         <td><%= link_to 'Show', task %></td>
         <td><%= link_to 'Edit', edit_task_path(task) %></td>
         <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>

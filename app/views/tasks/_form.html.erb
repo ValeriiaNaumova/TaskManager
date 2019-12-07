@@ -9,8 +9,9 @@
     <%= f.input :note %>
     <%= f.input :is_done %>
     <%= f.select :category_id, current_user.categories.map { |c| [c.title, c.id, { class: c.id }] } %>
+    <%= hidden_field_tag  "tasks[tag_ids][]", nil%>
     <% current_user.tags.each do |tag|%>
-    <%= check_box_tag "tasks[tag_ids][]", tag.id %>
+    <%= check_box_tag "tag_ids[]", tag.id  %>
       <%= tag.title %>
     <% end %>
   </div>
