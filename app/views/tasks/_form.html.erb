@@ -1,22 +1,23 @@
 
-<%= simple_form_for(@task) do |f| %>
+<%= simple_form_for @task do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs">
-    <%= f.input :deadline_at %>
+  <div class="container">
+    <%= f.input :deadline_at , include_blank: true %>
     <%= f.input :title %>
     <%= f.input :note %>
     <%= f.input :is_done %>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="inputGroupSelect01">Categories</label>
+      </div>
     <%= f.select :category_id, current_user.categories.map { |c| [c.title, c.id, { class: c.id }] } %>
-    <%= hidden_field_tag  "tasks[tag_ids][]", nil%>
-    <% current_user.tags.each do |tag|%>
-    <%= check_box_tag "tag_ids[]", tag.id  %>
-      <%= tag.title %>
-    <% end %>
+    </div>
+    <%= f.input :tag_ids, collection: current_user.tags.order(:title), label_method: :title, input_html: {multiple: true} %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <button type="button" class="btn btn-light"><%= f.button :submit %></button>
   </div>
 <% end %>

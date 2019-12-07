@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    .footer {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: lightgray;
+      color: white;
+      text-align: center;
+    }
+
+    li{display:inline}
+    ul{overflow:hidden}
+  </style>
   <title>Task Manager</title>
   <%= csrf_meta_tags %>
   <%= stylesheet_link_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' %>
@@ -9,27 +24,50 @@
 </head>
 
 <body>
+<nav class="my-2 my-md-0 mr-md-3">
 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
   <h5 class="my-0 mr-md-auto font-weight-normal">Tasks Manager</h5>
-  <nav class="my-2 my-md-0 mr-md-3">
-    <span class="p-2 text-dark" ><%= link_to "All tasks", tasks_path%></span>
-    <span class="p-2 text-dark" ><%= link_to "All tags", tags_path%></span>
-    <span class="p-2 text-dark" ><%= link_to "All Categories", categories_path%></span>
-    <span class="p-2 text-dark" ><%= link_to "Sign in", new_user_session_path %></span>
-  </nav>
-
-  <% if user_signed_in? %>
-    <span class="p-2 text-dark" ><%= link_to "User settings",edit_user_registration_path %></span>
-    <span class="p-2 text-dark">Welcome, <%= current_user.username %> </span>
-    <span class="btn btn-outline-primary" > <%= link_to('Sign out' ,destroy_user_session_path, :method => :delete) %> </span>
-  <% else %>
-    <span class="btn btn-outline-primary" > <%= link_to('Sign up', new_user_registration_path) %> </span>
-  <% end %>
-
-</div >
-
-
-
+    <ul>
+      <li class="nav-item">
+        <span class="p-2 text-dark" ><%= link_to "All tasks", tasks_path%></span>
+      </li>
+      <li class="nav-item">
+      <span class="p-2 text-dark" ><%= link_to "All tags", tags_path%></span>
+      </li>
+      <li class="nav-item">
+      <span class="p-2 text-dark" ><%= link_to "All Categories", categories_path%></span>
+      </li>
+      <li class="nav-item">
+      <span class="p-2 text-dark" ><%= link_to "Sign in", new_user_session_path %></span>
+      </li>
+      <% if user_signed_in? %>
+        <li class="nav-item">
+          <span class="p-2 text-dark" ><%= link_to "User settings",edit_user_registration_path %></span>
+        </li>
+        <li class="nav-item">
+          <span class="p-2 text-dark">Welcome, <%= current_user.username %> </span>
+        </li>
+        <span class="btn btn-outline-primary" > <%= link_to('Sign out' ,destroy_user_session_path, :method => :delete) %> </span>
+      <% else %>
+        <span class="btn btn-outline-primary" > <%= link_to('Sign up', new_user_registration_path) %> </span>
+      <% end %>
+    </ul>
+ </div>
+</nav>
 <%= yield %>
+<div class="footer">
+  <div class="footer-copyright text-center py-3">© 2019 Copyright:
+    <a href="https://github.com/ValeriiaNaumova"> Valeriia Naumova</a>
+  </div>
+</div>
 </body>
+<script>
+    $(document).on('ready page:load', function () {
+        $('#task_tag_ids').chosen({
+            allow_single_deselect: true,
+            width: '100%'
+        })
+    });
+</script>
 </html>
+

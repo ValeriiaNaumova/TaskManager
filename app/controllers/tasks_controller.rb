@@ -4,26 +4,19 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = current_user.tasks.where(["title LIKE ?", "%#{params[:search]}%"])
-    #@tag = Tag.find_by(title: params[:id])
-    #@tasks = @tag.tasks
-    #@task.attributes = {'tag_ids' => []}.merge(params[:user] || {})
-    #@tasks = current_user.tasks.tag
-    #params[:tag] ? @tasks = current_user.tasks.where(["title LIKE ?", "%#{params[:search]}%"]).tagged_with(params[:tag]) : @posts = current_user.tasks.where(["title LIKE ?", "%#{params[:search]}%"])
-    #params[:tag] ? @tasks = Task.tagged_with(params[:tag]) : @tasks = Task.all
+    params[:tag] ? @tasks = Task.tagged_with(params[:tag]) : @tasks = current_user.tasks.where(["note LIKE ?or title LIKE?", "%#{params[:search]}%", "%#{params[:search]}%"])
+
   end
 
   # GET /tasks/1
   # GET /tasks/1.json
   def show
-    #@tag =Tag.find_by(title: params[:id])
-    #@tasks = @tag.tasks
+
   end
 
   # GET /tasks/new
   def new
     @task = Task.new
-      #@tags = Tag.all.map{|c| [ c.title ] }
   end
 
   # GET /tasks/1/edit
@@ -81,6 +74,6 @@ class TasksController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def task_params
-    params.require(:task).permit(:deadline_at, :title, :note, :is_done, :category_id, tag_id: [])
+    params.require(:task).permit(:deadline_at, :title, :note, :is_done, :category_id, :tag_list, :tag, { tag_ids: [] }, :tag_ids)
   end
 end

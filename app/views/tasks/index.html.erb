@@ -7,33 +7,26 @@
     <%= submit_tag "Search" %>
 <% end %>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Deadline at</th>
-      <th>Title</th>
-      <th>Note</th>
-      <th>Is done</th>
-      <th>Category</th>
-      <th>Tag</th>
+      <th scope="col">Deadline at</th>
+      <th scope="col">Title</th>
+      <th scope="col">Is done</th>
+      <th scope="col">Category</th>
+      <th scope="col">Tag</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @tasks.each do |task| %>
+    <% @tasks.order(title: :asc).each do |task| %>
       <tr>
-        <td><%= task.deadline_at %></td>
+        <td><%= if @task.deadline_at != nil then @task.deadline_at.to_formatted_s(:long) else " " end %></td>
         <td><%= task.title %></td>
-        <td><%= task.note %></td>
         <td><%= task.is_done %></td>
         <td><%= task.category.title %></td>
-        <td>
-          <%= task.tags.each do |tag| -%>
-            <%= tag.title %><% end -%>
-        </td>
-
-
+        <td><%= raw task.tags.map(&:title).map { |t| link_to t, tag_path(t) }.join(', ') %></td>
         <td><%= link_to 'Show', task %></td>
         <td><%= link_to 'Edit', edit_task_path(task) %></td>
         <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -44,6 +37,6 @@
 
 <br>
 
-<%= link_to 'New Task', new_task_path %>
-<%= link_to 'New Category', new_category_path %>
-<%= link_to 'New Tag', new_tag_path %>
+<button type="button" class="btn btn-light"><%= link_to 'New Task', new_task_path %></button>
+<button type="button" class="btn btn-light"><%= link_to 'New Category', new_category_path %></button>
+<button type="button" class="btn btn-light"><%= link_to 'New Tag', new_tag_path %></button>

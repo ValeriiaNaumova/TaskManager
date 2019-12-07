@@ -2,7 +2,7 @@
 
 <p>
   <strong>Deadline at:</strong>
-  <%= @task.deadline_at %>
+  <%= if @task.deadline_at != nil then @task.deadline_at.to_formatted_s(:long) end   %>
 </p>
 
 <p>
@@ -27,8 +27,8 @@
 
 <p>
   <strong>Tags:</strong>
-  <%= @task.tags %>
+  <%= raw @task.tags.map(&:title).map { |t| link_to t, tag_path(t) }.join(', ') %>
 </p>
 
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>
+<button type="button" class="btn btn-light"><%= link_to 'Edit', edit_task_path(@task) %></button>
+<button type="button" class="btn btn-light"><%= link_to 'Back', tasks_path %></button>

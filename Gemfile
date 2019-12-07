@@ -32,6 +32,16 @@ gem 'sqlite3', '~> 1.3.13'
 gem 'simple_form'
 gem 'devise'
 gem 'chroma'
+gem 'jquery-rails'
+gem 'popper_js', '~> 1.11.1'
+gem 'bootstrap', '4.0.0.alpha6'
+gem 'bundler', '>= 1.8.4'
+source 'http://insecure.rails-assets.org' do
+  gem 'rails-assets-tether', '>= 1.3.3'
+  gem 'rails-assets-chosen'
+end
+
+gem 'bullet', '~> 5.7', '>= 5.7.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
