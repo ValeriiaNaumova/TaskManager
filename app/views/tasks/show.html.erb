@@ -2,7 +2,7 @@
 
 <p>
   <strong>Deadline at:</strong>
-  <%= if @task.deadline_at != nil then @task.deadline_at.to_formatted_s(:long) end   %>
+  <%= if @task.deadline_at != nil then @task.deadline_at.to_formatted_s(:long) else " " end  %>
 </p>
 
 <p>
@@ -22,7 +22,7 @@
 
 <p>
   <strong>Categories:</strong>
-  <%= @task.category.title %>
+  <%= if @task.category!= nil then @task.category.title else " " end %>
 </p>
 
 <p>

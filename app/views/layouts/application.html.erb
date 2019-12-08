@@ -13,14 +13,15 @@
       text-align: center;
     }
 
+
     li{display:inline}
     ul{overflow:hidden}
   </style>
   <title>Task Manager</title>
   <%= csrf_meta_tags %>
+  <%= javascript_include_tag 'application' %>
   <%= stylesheet_link_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
 <body>
@@ -54,6 +55,7 @@
     </ul>
  </div>
 </nav>
+
 <%= yield %>
 <div class="footer">
   <div class="footer-copyright text-center py-3">© 2019 Copyright:

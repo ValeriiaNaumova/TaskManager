@@ -1,17 +1,17 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
+
   # GET /tasks
   # GET /tasks.json
   def index
-    params[:tag] ? @tasks = Task.tagged_with(params[:tag]) : @tasks = current_user.tasks.where(["note LIKE ?or title LIKE?", "%#{params[:search]}%", "%#{params[:search]}%"])
+     @tasks = current_user.tasks.where(["note LIKE ?or title LIKE?", "%#{params[:search]}%", "%#{params[:search]}%"]).paginate(page: params[:page])
 
   end
 
   # GET /tasks/1
   # GET /tasks/1.json
   def show
-
   end
 
   # GET /tasks/new
@@ -21,6 +21,7 @@ class TasksController < ApplicationController
 
   # GET /tasks/1/edit
   def edit
+
   end
 
   # POST /tasks

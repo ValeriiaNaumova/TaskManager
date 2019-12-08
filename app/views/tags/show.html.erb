@@ -12,5 +12,10 @@
   </svg>
 </p>
 
+<p>
+  <strong>Tasks:</strong>
+  <%= raw @tag.tasks.map{ |t| link_to t.title, task_path(t) }.join(', ') %>
+</p>
+
 <button type="button" class="btn btn-light"><%= link_to 'Edit', edit_tag_path(@tag) %></button>
 <button type="button" class="btn btn-light"><%= link_to 'Back', tags_path %></button>

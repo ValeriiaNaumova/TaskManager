@@ -19,6 +19,7 @@ class TagsController < ApplicationController
 
   # GET /tags/1/edit
   def edit
+
   end
 
   # POST /tags

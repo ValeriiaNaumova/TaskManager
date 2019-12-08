@@ -6,7 +6,7 @@ class CreateTasks < ActiveRecord::Migration[5.1]
       t.text :note
       t.boolean :is_done
       t.references :user, null: false, foreign_key: true
-      t.references :category, null: false, foreign_key: true
+      t.references :category, null: true, foreign_key: true
       t.timestamps
     end
   end

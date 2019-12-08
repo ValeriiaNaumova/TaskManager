@@ -39,9 +39,15 @@ gem 'bundler', '>= 1.8.4'
 source 'http://insecure.rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'
   gem 'rails-assets-chosen'
+  gem "rails-assets-jquery"
+  gem 'rails-assets-datatables'
 end
 
+gem "bootstrap-table-rails"
+
 gem 'bullet', '~> 5.7', '>= 5.7.5'
+
+gem 'will_paginate', '~> 3.1.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

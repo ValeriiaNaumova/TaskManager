@@ -12,7 +12,7 @@
       <div class="input-group-prepend">
         <label class="input-group-text" for="inputGroupSelect01">Categories</label>
       </div>
-    <%= f.select :category_id, current_user.categories.map { |c| [c.title, c.id, { class: c.id }] } %>
+    <%= f.select :category_id, current_user.categories.map { |c| [c.title, c.id, { class: c.id }] } , include_blank: true %>
     </div>
     <%= f.input :tag_ids, collection: current_user.tags.order(:title), label_method: :title, input_html: {multiple: true} %>
   </div>

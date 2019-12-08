@@ -1,10 +1,13 @@
 class Task < ApplicationRecord
   belongs_to :user
-  belongs_to :category
+  validates :category, presence: false, allow_blank: true
+  belongs_to :category, optional: true
   has_many :tag_associations, dependent: :destroy
   has_many :tags, through: :tag_associations, dependent: :destroy
-  validates :title, :presence => true, length: {minimum: 5}
+  validates :title, :presence => true, length: {minimum: 5}, uniqueness: true
   validates :note, :presence => true, length: {minimum: 5}
+
+  self.per_page = 30
 
   def self.tagged_with(title)
     Tag.find_by!(title: title).tasks

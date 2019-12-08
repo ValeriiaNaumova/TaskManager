@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20191205155219) do
     t.text "note"
     t.boolean "is_done"
     t.integer "user_id", null: false
-    t.integer "category_id", null: false
+    t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_tasks_on_category_id"
